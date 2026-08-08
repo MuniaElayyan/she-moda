@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- بيانات الصفحة لمحركات البحث -->
+    <title>آراء الزبائن | She Moda</title>
+    <meta name="description"
+        content="تجارب زبائن متجر She Moda للأزياء النسائية في عتيل - طولكرم، وآراؤهنّ في المنتجات وجودة الخدمة.">
+    <meta name="theme-color" content="#d46d9d">
+
+    <link rel="icon" type="image/png" href="Untitled.png">
+    <link rel="apple-touch-icon" href="Untitled.png">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="She Moda">
+    <meta property="og:locale" content="ar_AR">
+    <meta property="og:title" content="آراء الزبائن | She Moda">
+    <meta property="og:description" content="ماذا قالت زبونات She Moda عن تجربتهنّ مع المتجر.">
+    <meta property="og:image" content="logo.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Allura&family=Cairo:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/theme.js"></script>
+</head>
+
+<body class="bg-white font-sans text-ink-900 antialiased" data-page="customers">
+
+    <div id="site-header-root"></div>
+
+    <main id="main">
+
+        <!-- ==============================================================
+             ترويسة الصفحة
+             ============================================================== -->
+        <section class="relative overflow-hidden bg-gradient-to-b from-blush-50 to-white py-16 lg:py-20">
+            <div class="pointer-events-none absolute -top-20 -start-16 h-64 w-64 rounded-full bg-blush-200/50 blur-3xl"
+                aria-hidden="true"></div>
+
+            <div class="relative mx-auto max-w-content px-4 text-center sm:px-6 lg:px-8">
+                <p class="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.25em] text-blush-600 ring-1 ring-blush-100">
+                    آراء الزبائن
+                </p>
+
+                <h1 class="mt-5 text-3xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-4xl lg:text-5xl">
+                    آراء زبائننا
+                </h1>
+
+                <p class="mx-auto mt-5 max-w-2xl text-[15px] leading-9 text-ink-500 sm:text-[17px]">
+                    بعض من تجارب عميلاتنا مع She Moda ✨
+                </p>
+
+                <div class="mt-7 flex items-center justify-center gap-3" aria-hidden="true">
+                    <span class="h-px w-16 bg-gradient-to-l from-blush-300 to-transparent"></span>
+                    <span class="h-2 w-2 rotate-45 rounded-[2px] bg-blush-300"></span>
+                    <span class="h-px w-16 bg-gradient-to-r from-blush-300 to-transparent"></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==============================================================
+             الآراء — بنمط المسار البصري المتعرّج
+             ============================================================== -->
+        <section class="pb-20 lg:pb-28">
+            <div class="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+                <h2 class="sr-only">قائمة آراء الزبائن</h2>
+
+                <!-- الآراء تُبنى من js/data/content.js -->
+                <div id="testimonials-path"></div>
+            </div>
+        </section>
+
+        <!-- ==============================================================
+             دعوة لمشاركة الرأي
+             ============================================================== -->
+        <section class="pb-24">
+            <div class="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+                <div class="relative overflow-hidden rounded-[36px] bg-gradient-to-br from-blush-500 to-blush-700 px-6 py-16 text-center shadow-lift sm:px-12"
+                    data-reveal>
+
+                    <div class="pointer-events-none absolute -bottom-16 -start-10 h-56 w-56 rounded-full bg-white/10 blur-2xl"
+                        aria-hidden="true"></div>
+
+                    <h2 class="relative text-3xl font-extrabold text-white sm:text-4xl">
+                        شاركينا رأيكِ
+                    </h2>
+
+                    <p class="relative mx-auto mt-5 max-w-xl text-[15px] leading-9 text-blush-50 sm:text-[17px]">
+                        رأيكِ يهمّنا ويساعدنا على تحسين تشكيلتنا وخدمتنا. أرسلي لنا تجربتكِ
+                        على واتساب وسنكون سعداء بنشرها هنا.
+                    </p>
+
+                    <div class="relative mt-9 flex flex-wrap justify-center gap-3">
+                        <a data-whatsapp data-whatsapp-text="مرحبًا She Moda، أحب أن أشارككم رأيي في تجربتي معكم."
+                            class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-[15px] font-semibold text-blush-600 shadow-lift transition-all duration-300 hover:-translate-y-0.5 hover:bg-blush-50 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60 motion-reduce:transition-none">
+                            أرسلي رأيكِ
+                        </a>
+                        <a href="products.html"
+                            class="inline-flex items-center justify-center gap-2 rounded-full bg-white/10 px-8 py-4 text-[15px] font-semibold text-white ring-1 ring-white/40 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/20 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60 motion-reduce:transition-none">
+                            تصفّحي المنتجات
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="site-footer-root"></div>
+
+    <script src="js/data/site.js"></script>
+    <script src="js/data/categories.js"></script>
+    <script src="js/data/products.js"></script>
+    <script src="js/data/content.js"></script>
+    <script src="js/icons.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/cards.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/lightbox.js"></script>
+    <script src="js/catalog.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

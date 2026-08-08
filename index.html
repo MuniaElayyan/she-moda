@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- بيانات الصفحة لمحركات البحث -->
+    <title>She Moda | متجر أزياء نسائية في عتيل - طولكرم</title>
+    <meta name="description"
+        content="She Moda متجر أزياء نسائية في عتيل - طولكرم. جلابيب وعبايات وفساتين وقفاطين وأطقم رسمية وقمصان ومكملات حجاب وأطقم صلاة وعطور ومنتجات عناية.">
+    <meta name="theme-color" content="#d46d9d">
+
+    <!-- شعار المتجر كأيقونة في تبويب المتصفح -->
+    <link rel="icon" type="image/png" href="Untitled.png">
+    <link rel="apple-touch-icon" href="Untitled.png">
+
+    <!-- بيانات المشاركة على مواقع التواصل -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="She Moda">
+    <meta property="og:locale" content="ar_AR">
+    <meta property="og:title" content="She Moda | أناقتكِ تبدأ من هنا">
+    <meta property="og:description"
+        content="متجر أزياء نسائية في عتيل - طولكرم. تشكيلة متجددة من الجلابيب والعبايات والفساتين والأطقم الرسمية ومكملات الحجاب.">
+    <meta property="og:image" content="logo.png">
+
+    <!-- الخطوط: Cairo للنصوص العربية و Allura لاسم البراند -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Allura&family=Cairo:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap">
+
+    <!-- Tailwind CSS + إعدادات هوية الموقع (js/theme.js) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/theme.js"></script>
+</head>
+
+<body class="bg-white font-sans text-ink-900 antialiased" data-page="home">
+
+    <!-- الهيدر يُبنى من js/layout.js -->
+    <div id="site-header-root"></div>
+
+    <main id="main">
+
+        <!-- ==============================================================
+             القسم الافتتاحي: اسم البراند + العنوان + الأزرار + صورة المتجر
+             ============================================================== -->
+        <section class="relative overflow-hidden bg-gradient-to-b from-blush-50 via-white to-white">
+
+            <!-- هالات وردية ناعمة في الخلفية -->
+            <div class="pointer-events-none absolute -top-24 -start-24 h-72 w-72 rounded-full bg-blush-200/50 blur-3xl"
+                aria-hidden="true"></div>
+            <div class="pointer-events-none absolute -bottom-16 end-0 h-96 w-96 rounded-full bg-blush-100/70 blur-3xl"
+                aria-hidden="true"></div>
+
+            <div class="relative mx-auto max-w-content px-4 py-14 sm:px-6 lg:px-8 lg:py-24">
+                <div class="grid items-center gap-14 lg:grid-cols-2 lg:gap-16">
+
+                    <!-- النصوص والأزرار -->
+                    <div class="animate-fade-up text-center lg:text-start">
+
+                        <p class="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-blush-600 ring-1 ring-blush-100">
+                            مرحبًا بكِ في عالم الأناقة
+                        </p>
+
+                        <h1 class="mt-6">
+                            <span class="block font-brand text-6xl leading-none sm:text-7xl lg:text-8xl">
+                                <span class="text-blush-500">She</span>
+                                <span class="text-ink-900">Moda</span>
+                            </span>
+                            <span class="mt-4 block text-2xl font-extrabold tracking-tight text-ink-900 sm:text-3xl lg:text-[38px]">
+                                أناقتكِ تبدأ من هنا
+                            </span>
+                        </h1>
+
+                        <p class="mx-auto mt-6 max-w-xl text-[15px] leading-9 text-ink-500 sm:text-[17px] lg:mx-0">
+                            كل ما تحتاجينه لإطلالة متكاملة في مكان واحد: أحدث صيحات الموضة، الملابس
+                            العصرية، البيجامات المريحة، مكملات الحجاب، العطور، ومستحضرات العناية
+                            التي تمنحكِ لمسة من الجمال والثقة.
+                        </p>
+
+                        <!-- أزرار الدعوة للتصفح -->
+                        <div class="mt-9 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+                            <a href="products.html"
+                                class="inline-flex items-center justify-center gap-2 rounded-full bg-blush-500 px-8 py-4 text-[15px] font-semibold text-white shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:bg-blush-600 hover:shadow-lift focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blush-300/70 motion-reduce:transition-none">
+                                اكتشفي المنتجات
+                            </a>
+                            <a href="#categories"
+                                class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-[15px] font-semibold text-blush-700 ring-1 ring-blush-200 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blush-50 hover:ring-blush-400 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blush-300/70 motion-reduce:transition-none">
+                                اكتشفي مجموعتنا
+                            </a>
+                        </div>
+
+                        <!-- ثلاث نقاط ثقة مختصرة -->
+                        <ul class="mt-10 flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-sm font-semibold text-ink-500 lg:justify-start">
+                            <li class="flex items-center gap-2">
+                                <span class="h-1.5 w-1.5 rotate-45 bg-blush-400" aria-hidden="true"></span>
+                                تشكيلة متجدّدة
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="h-1.5 w-1.5 rotate-45 bg-blush-400" aria-hidden="true"></span>
+                                جودة نثق بها
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="h-1.5 w-1.5 rotate-45 bg-blush-400" aria-hidden="true"></span>
+                                استفسار سريع عبر واتساب
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- صورة واجهة المتجر مع بطاقة الشعار العائمة -->
+                    <div class="relative animate-fade-in">
+                        <figure class="relative overflow-hidden rounded-[32px] shadow-lift ring-1 ring-blush-100">
+                            <img src="مكان.png"
+                                alt="واجهة متجر She Moda في عتيل - طولكرم مضاءة ليلًا"
+                                width="676" height="817" fetchpriority="high" decoding="async"
+                                class="aspect-[4/5] w-full object-cover sm:aspect-[5/4] lg:aspect-[4/5]">
+                            <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink-900/85 to-transparent p-6 text-sm font-semibold text-white">
+                                متجرنا في عتيل - طولكرم، الشارع الرئيسي
+                            </figcaption>
+                        </figure>
+
+                        <!-- بطاقة الشعار -->
+                        <div class="absolute -bottom-6 -start-4 hidden items-center gap-3 rounded-3xl bg-white/95 p-4 shadow-lift ring-1 ring-blush-100 backdrop-blur sm:flex">
+                            <img src="Untitled.png" alt="" width="64" height="64" loading="lazy" decoding="async"
+                                class="h-14 w-14 object-contain">
+                            <div>
+                                <p class="font-brand text-2xl leading-none text-blush-500">She Moda</p>
+                                <p class="mt-1 text-xs font-semibold text-ink-500">أزياء نسائية</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ==============================================================
+             أقسام المتجر المميزة
+             ============================================================== -->
+        <section id="categories" class="scroll-mt-28 py-20 lg:py-28">
+            <div class="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+
+                <div class="text-center" data-reveal>
+                    <p class="inline-flex items-center gap-2 rounded-full bg-blush-50 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.25em] text-blush-600 ring-1 ring-blush-100">
+                        أقسامنا
+                    </p>
+                    <h2 class="mt-5 text-3xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-4xl lg:text-[42px]">
+                        اكتشفي مجموعاتنا
+                    </h2>
+                    <p class="mx-auto mt-5 max-w-2xl text-[15px] leading-9 text-ink-500 sm:text-[17px]">
+                        اختاري من بين تشكيلة متنوعة من أحدث الأزياء والإكسسوارات والعطور
+                        ومنتجات العناية التي تناسب ذوقكِ.
+                    </p>
+                    <div class="mt-7 flex items-center justify-center gap-3" aria-hidden="true">
+                        <span class="h-px w-16 bg-gradient-to-l from-blush-300 to-transparent"></span>
+                        <span class="h-2 w-2 rotate-45 rounded-[2px] bg-blush-300"></span>
+                        <span class="h-px w-16 bg-gradient-to-r from-blush-300 to-transparent"></span>
+                    </div>
+                </div>
+
+                <!-- الكروت تُبنى من js/data/categories.js -->
+                <div id="featured-categories"
+                    class="mt-14 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4 lg:gap-7"></div>
+
+                <div class="mt-14 text-center" data-reveal>
+                    <a href="products.html"
+                        class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-[15px] font-semibold text-blush-700 ring-1 ring-blush-200 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blush-50 hover:ring-blush-400 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blush-300/70 motion-reduce:transition-none">
+                        عرض جميع الأقسام
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- فاصل بصري بين الأقسام -->
+        <div class="mx-auto flex max-w-content items-center gap-4 px-4 sm:px-6 lg:px-8" aria-hidden="true">
+            <span class="h-px flex-1 bg-gradient-to-l from-blush-200 to-transparent"></span>
+            <span class="h-1.5 w-1.5 rotate-45 bg-blush-300"></span>
+            <span class="h-px flex-1 bg-gradient-to-r from-blush-200 to-transparent"></span>
+        </div>
+
+        <!-- ==============================================================
+             لماذا She Moda — بنمط المسار البصري المتعرّج
+             ============================================================== -->
+        <section class="bg-gradient-to-b from-white via-blush-50/50 to-white py-20 lg:py-28">
+            <div class="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+
+                <div class="text-center" data-reveal>
+                    <p class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-[0.25em] text-blush-600 ring-1 ring-blush-100">
+                        لماذا نحن
+                    </p>
+                    <h2 class="mt-5 text-3xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-4xl lg:text-[42px]">
+                        ما الذي يميّز She Moda
+                    </h2>
+                    <div class="mt-7 flex items-center justify-center gap-3" aria-hidden="true">
+                        <span class="h-px w-16 bg-gradient-to-l from-blush-300 to-transparent"></span>
+                        <span class="h-2 w-2 rotate-45 rounded-[2px] bg-blush-300"></span>
+                        <span class="h-px w-16 bg-gradient-to-r from-blush-300 to-transparent"></span>
+                    </div>
+                </div>
+
+                <!-- المميزات تُبنى من js/data/content.js بنمط المسار المتعرّج -->
+                <div id="features-path" class="mt-16"></div>
+            </div>
+        </section>
+
+        <!-- ==============================================================
+             لمحة تعريفية عن المتجر
+             ============================================================== -->
+        <section class="py-20 lg:py-28">
+            <div class="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+                <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+
+                    <figure class="relative order-last overflow-hidden rounded-[32px] shadow-lift ring-1 ring-blush-100 lg:order-first"
+                        data-reveal>
+                        <img src="بلوزة.png"
+                            alt="رفّ بلايز هاينيك بألوان متعددة داخل متجر She Moda"
+                            loading="lazy" decoding="async"
+                            class="aspect-[4/3] w-full object-cover">
+                    </figure>
+
+                    <div data-reveal>
+                        <p class="inline-flex items-center gap-2 rounded-full bg-blush-50 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.25em] text-blush-600 ring-1 ring-blush-100">
+                            تعرّفي علينا
+                        </p>
+
+                        <h2 class="mt-5 text-3xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-4xl">
+                            وجهتكِ لكل ما يخص الأناقة والموضة
+                        </h2>
+
+                        <p class="mt-6 text-[15px] leading-9 text-ink-500 sm:text-[17px]">
+                            نسعى في <strong class="font-bold text-ink-800">She Moda</strong> لتوفير أحدث
+                            التصاميم والمنتجات التي تمنح كل سيدة إطلالة راقية وعصرية، ونختار كل قطعة
+                            بعناية من حيث الخامة والقصّة والتشطيب.
+                        </p>
+
+                        <p class="mt-4 text-[15px] leading-9 text-ink-500 sm:text-[17px]">
+                            هدفنا تقديم منتجات عالية الجودة بأسعار مناسبة مع خدمة مميزة، لأن رضاكِ
+                            وثقتكِ هما أساس نجاحنا.
+                        </p>
+
+                        <div class="mt-9 flex flex-wrap gap-3">
+                            <a href="about.html"
+                                class="inline-flex items-center justify-center gap-2 rounded-full bg-blush-500 px-7 py-3.5 text-[15px] font-semibold text-white shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:bg-blush-600 hover:shadow-lift focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blush-300/70 motion-reduce:transition-none">
+                                اعرفي المزيد عنّا
+                            </a>
+                            <a href="about.html#gallery"
+                                class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-[15px] font-semibold text-blush-700 ring-1 ring-blush-200 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blush-50 hover:ring-blush-400 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blush-300/70 motion-reduce:transition-none">
+                                شاهدي الصور
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- فاصل بصري بين الأقسام -->
+        <div class="mx-auto flex max-w-content items-center gap-4 px-4 sm:px-6 lg:px-8" aria-hidden="true">
+            <span class="h-px flex-1 bg-gradient-to-l from-blush-200 to-transparent"></span>
+            <span class="h-1.5 w-1.5 rotate-45 bg-blush-300"></span>
+            <span class="h-px flex-1 bg-gradient-to-r from-blush-200 to-transparent"></span>
+        </div>
+
+        <!-- ==============================================================
+             لمحة من آراء الزبائن
+             ============================================================== -->
+        <section class="py-20 lg:py-28">
+            <div class="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+
+                <div class="text-center" data-reveal>
+                    <p class="inline-flex items-center gap-2 rounded-full bg-blush-50 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.25em] text-blush-600 ring-1 ring-blush-100">
+                        آراء الزبائن
+                    </p>
+                    <h2 class="mt-5 text-3xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-4xl lg:text-[42px]">
+                        ماذا قالت زبوناتنا
+                    </h2>
+                    <div class="mt-7 flex items-center justify-center gap-3" aria-hidden="true">
+                        <span class="h-px w-16 bg-gradient-to-l from-blush-300 to-transparent"></span>
+                        <span class="h-2 w-2 rotate-45 rounded-[2px] bg-blush-300"></span>
+                        <span class="h-px w-16 bg-gradient-to-r from-blush-300 to-transparent"></span>
+                    </div>
+                </div>
+
+                <!-- ثلاثة آراء تُبنى من js/data/content.js -->
+                <div id="testimonials-preview" class="mt-14 grid gap-6 md:grid-cols-3"></div>
+
+                <div class="mt-12 text-center" data-reveal>
+                    <a href="customers.html"
+                        class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-[15px] font-semibold text-blush-700 ring-1 ring-blush-200 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blush-50 hover:ring-blush-400 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blush-300/70 motion-reduce:transition-none">
+                        شاهدي كل الآراء
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==============================================================
+             دعوة أخيرة للتواصل
+             ============================================================== -->
+        <section class="pb-24">
+            <div class="mx-auto max-w-content px-4 sm:px-6 lg:px-8">
+                <div class="relative overflow-hidden rounded-[36px] bg-gradient-to-br from-blush-500 to-blush-700 px-6 py-16 text-center shadow-lift sm:px-12"
+                    data-reveal>
+
+                    <div class="pointer-events-none absolute -top-16 -end-10 h-56 w-56 rounded-full bg-white/10 blur-2xl"
+                        aria-hidden="true"></div>
+
+                    <h2 class="relative text-3xl font-extrabold text-white sm:text-4xl">
+                        عندكِ سؤال عن قطعة معيّنة؟
+                    </h2>
+
+                    <p class="relative mx-auto mt-5 max-w-xl text-[15px] leading-9 text-blush-50 sm:text-[17px]">
+                        راسلينا على واتساب وسنساعدكِ في اختيار المقاس واللون المناسبين، أو زورينا
+                        في المتجر في عتيل - طولكرم.
+                    </p>
+
+                    <div class="relative mt-9 flex flex-wrap justify-center gap-3">
+                        <!-- الرابط يُملأ من js/main.js اعتمادًا على رقم المتجر في site.js -->
+                        <a data-whatsapp data-whatsapp-text="مرحبًا She Moda، أريد الاستفسار عن أحد المنتجات."
+                            class="inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-[15px] font-semibold text-blush-600 shadow-lift transition-all duration-300 hover:-translate-y-0.5 hover:bg-blush-50 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60 motion-reduce:transition-none">
+                            اسألي عن منتج
+                        </a>
+                        <a href="contact.html"
+                            class="inline-flex items-center justify-center gap-2 rounded-full bg-white/10 px-8 py-4 text-[15px] font-semibold text-white ring-1 ring-white/40 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/20 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60 motion-reduce:transition-none">
+                            تواصلي معنا
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- الفوتر يُبنى من js/layout.js -->
+    <div id="site-footer-root"></div>
+
+    <!-- ==================================================================
+         ملفات الجافاسكربت — الترتيب مهم:
+         البيانات أولًا، ثم الأدوات المشتركة، ثم الوحدات، وأخيرًا ملف التشغيل
+         ================================================================== -->
+    <script src="js/data/site.js"></script>
+    <script src="js/data/categories.js"></script>
+    <script src="js/data/products.js"></script>
+    <script src="js/data/content.js"></script>
+    <script src="js/icons.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/cards.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/lightbox.js"></script>
+    <script src="js/catalog.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
