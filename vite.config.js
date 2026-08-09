@@ -8,9 +8,10 @@
      • يعرّف الصفحات الخمس كنقاط دخول للبناء.
      • base: './' لتعمل كل المسارات نسبيًا — ضروري لنشر الموقع على
        GitHub Pages تحت مسار فرعي مثل username.github.io/she-moda/
-     • ينسخ جميع الصور إلى مجلد dist **بأسمائها الأصلية دون أي تغيير**،
-       لأن أسماء الصور مكتوبة نصًا داخل ملفات البيانات (وبعضها بالعربية
-       وفيه مسافات وأقواس) ولا يستطيع أداة البناء اكتشافها تلقائيًا.
+     • ينسخ مجلد images/ ومجلد video/ إلى dist **بأسماء ملفاتهما الأصلية
+       دون أي تغيير**، لأن أسماء الصور مكتوبة نصًا داخل ملفات البيانات
+       (وبعضها بالعربية وفيه مسافات وأقواس) ولا يستطيع أداة البناء
+       اكتشافها تلقائيًا.
      • ينسخ مجلد js/ كما هو، لأن سكربتات الموقع سكربتات عادية مرتّبة
        تتشارك متغيرًا عامًا واحدًا، وتحويلها إلى وحدات ESM يكسر ترتيب
        تحميلها. لذلك تُنسخ بلا تغيير وتبقى الصفحات تشير إليها كما هي.
@@ -27,15 +28,15 @@ const root = process.cwd();
 /* امتدادات الملفات التي تُنسخ كما هي إلى مجلد البناء */
 const ASSET_PATTERN = /\.(png|jpe?g|gif|webp|svg|mp4|webm)$/i;
 
-/* نسخ مجلد كامل بمحتوياته الفرعية */
-function copyDir(from, to) {
+/* نسخ مجلد كامل بمحتوياته الفرعية — مع إمكانية قصر النسخ على امتدادات معيّنة */
+function copyDir(from, to, pattern) {
   if (!existsSync(to)) mkdirSync(to, { recursive: true });
   let count = 0;
   for (const entry of readdirSync(from)) {
     const src = join(from, entry);
     const dest = join(to, entry);
-    if (statSync(src).isDirectory()) count += copyDir(src, dest);
-    else {
+    if (statSync(src).isDirectory()) count += copyDir(src, dest, pattern);
+    else if (!pattern || pattern.test(entry)) {
       copyFileSync(src, dest);
       count++;
     }
@@ -44,7 +45,7 @@ function copyDir(from, to) {
 }
 
 /* ---------------------------------------------------------------------------
-   إضافة صغيرة تنسخ الصور وملفات الفيديو ومجلد js إلى dist بأسمائها الأصلية
+   إضافة صغيرة تنسخ مجلد images ومجلد video ومجلد js إلى dist بأسمائها الأصلية
    --------------------------------------------------------------------------- */
 function copyOriginalAssets() {
   return {
@@ -54,14 +55,17 @@ function copyOriginalAssets() {
       const outDir = resolve(root, 'dist');
       if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
 
-      const files = readdirSync(root).filter((f) => ASSET_PATTERN.test(f));
-      for (const file of files) {
-        copyFileSync(resolve(root, file), resolve(outDir, file));
+      /* مجلدات الوسائط — تُنسخ كما هي بأسماء ملفاتها الأصلية */
+      let media = 0;
+      for (const dir of ['images', 'video']) {
+        const from = resolve(root, dir);
+        if (!existsSync(from)) continue;
+        media += copyDir(from, resolve(outDir, dir), ASSET_PATTERN);
       }
 
       const scripts = copyDir(resolve(root, 'js'), resolve(outDir, 'js'));
 
-      console.log(`\n  ✔ نُسخ ${files.length} ملف صورة/فيديو بأسمائه الأصلية`);
+      console.log(`\n  ✔ نُسخ ${media} ملف صورة/فيديو بأسمائه الأصلية`);
       console.log(`  ✔ نُسخ ${scripts} ملف جافاسكربت داخل مجلد js/`);
     },
   };
@@ -97,8 +101,10 @@ export default defineConfig({
         contact: resolve(root, 'contact.html'),
       },
       output: {
-        /* بدون hash — الاسم يبقى مطابقًا لما هو مكتوب في ملفات البيانات */
-        assetFileNames: '[name][extname]',
+        /* الصور التي تكتشفها أداة البناء داخل صفحات HTML تُخرَج إلى مجلد
+           images نفسه وبأسمائها كما هي بلا hash، حتى يبقى مسارها في dist
+           مطابقًا تمامًا للمسار المكتوب في الصفحات وفي ملفات البيانات */
+        assetFileNames: 'images/[name][extname]',
       },
     },
   },
