@@ -242,17 +242,26 @@ SheModa.visualPath = function (items, renderItem) {
 };
 
 /* ---------------------------------------------------------------------------
-   كرت إحصائية — يعرض شرطة بدل الرقم إلى أن تُضاف الأرقام الحقيقية
+   كرت إحصائية — يعرض شرطة بدل الرقم لو كانت القيمة غير موجودة
+   stat.suffix اختياري (مثل '+' بمعنى «أكثر من»)، ويُلفّ مع الرقم
+   داخل span بالاتجاه LTR حتى تظهر العلامة يمين الرقم دائمًا في صفحة RTL
    --------------------------------------------------------------------------- */
 SheModa.statCard = function (stat) {
   var hasValue = stat.value !== null && stat.value !== undefined;
+  var suffix = stat.suffix ? stat.suffix : '';
+
+  var display = '—';
+  if (hasValue) {
+    display =
+      '<span dir="ltr">' + SheModa.esc(stat.value) + SheModa.esc(suffix) + '</span>';
+  }
 
   return (
     '<div data-reveal class="rounded-3xl bg-white p-6 text-center shadow-soft ring-1 ring-blush-100/80 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-lift motion-reduce:transition-none motion-reduce:hover:translate-y-0">' +
     '<p class="font-display text-4xl font-bold ' +
     (hasValue ? 'text-blush-500' : 'text-blush-200') +
     ' sm:text-5xl">' +
-    (hasValue ? SheModa.esc(stat.value) : '—') +
+    display +
     '</p>' +
     '<p class="mt-2 text-sm font-semibold text-ink-500">' +
     SheModa.esc(stat.label) +
