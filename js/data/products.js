@@ -28,14 +28,15 @@ window.SheModa = window.SheModa || {};
 
 SheModa.products = [
   /* ------------------------------- جلابيب ------------------------------- */
-  {
-    name: 'جلباب أنيق',
-    category: 'jalabib',
-    image: 'images/جلباب1.png',
-    price: 150,
-    sizes: 'من 1 إلى 5',
-    colors: 3,
-  },
+ 
+  /* قطع جديدة — جلابيب 100 شيكل (نفس التصميم بعدة صور) */
+  { name: 'جلباب أنيق', category: 'jalabib', image: 'images/جلباب2.jpg', price: 100 },
+  { name: 'جلباب أنيق', category: 'jalabib', image: 'images/جلباب3.png', price: 100 },
+  { name: 'جلباب أنيق', category: 'jalabib', image: 'images/جلباب4.png', price: 100 },
+  { name: 'جلباب أنيق', category: 'jalabib', image: 'images/جلباب5.png', price: 100 },
+  /* قطع جديدة — جلابيب 120 شيكل */
+  { name: 'جلباب مزخرف', category: 'jalabib', image: 'images/جلباب6.jpg', price: 120 },
+  { name: 'جلباب أنيق', category: 'jalabib', image: 'images/جلباب7.png', price: 120 },
 
   /* ------------------------------- عبايات ------------------------------- */
   { name: 'عباية كلاسيك', category: 'abayat', image: 'images/عباية1.png', price: 150 },
@@ -132,6 +133,14 @@ SheModa.products = [
     category: 'formal-sets',
     image: 'images/طقم مزخرف.png',
     price: 150,
+    sizes: 'من 38 إلى 42',
+  },
+  /* قطع جديدة — طقم رسمي 120 شيكل */
+  {
+    name: 'طقم رسمي راقي',
+    category: 'formal-sets',
+    image: 'images/طقم9.jpg',
+    price: 120,
     sizes: 'من 38 إلى 42',
   },
 
