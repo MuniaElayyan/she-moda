@@ -39,22 +39,34 @@ app.post('/api/chat',limit('c',25,10*60e3),async(q,s)=>{const K=process.env.ANTH
   try{const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'x-api-key':K,'anthropic-version':'2023-06-01','content-type':'application/json'},body:JSON.stringify({model:process.env.CHAT_MODEL||'claude-haiku-5-5',max_tokens:500,system:sys,messages:m})});const j=await r.json();if(!r.ok)throw Error(JSON.stringify(j).slice(0,200));s.json({text:(j.content||[]).map(x=>x.text||'').join('')})}catch(e){console.error('chat',e.message);s.status(502).json({error:'chat failed'})}});
 app.post('/api/password',auth,(q,s)=>{const u=db.users.find(x=>x.u===who(q));if(String(q.body.p||'').length<6)return s.status(400).json({error:'كلمة المرور 6 أحرف على الأقل'});u.s=crypto.randomBytes(8).toString('hex');u.h=hash(q.body.p,u.s);save();s.json({ok:1})});
 const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-async function mail(o,lines){
-  const at=[],rows=lines.map((l,i)=>{const f=l.image.startsWith('uploads/')?path.join(UP,l.image.slice(8)):path.join('public',l.image);let img='';
-    if(fs.existsSync(f)){at.push({filename:path.basename(f),path:f,cid:'i'+i});img=`<img src="cid:i${i}" width="70" height="90" style="border-radius:10px;object-fit:cover">`}
+async function mail(o,lines,base=''){
+  const http=!!(process.env.BREVO_API_KEY||process.env.RESEND_API_KEY),at=[];
+  const imgUrl=p=>base+'/'+encodeURI(p).replace(/#/g,'%23');
+  const rows=lines.map((l,i)=>{let img='';
+    if(http){if(base)img=`<img src="${imgUrl(l.image)}" width="70" height="90" style="border-radius:10px;object-fit:cover">`}
+    else{const f=l.image.startsWith('uploads/')?path.join(UP,l.image.slice(8)):path.join('public',l.image);
+      if(fs.existsSync(f)){at.push({filename:path.basename(f),path:f,cid:'i'+i});img=`<img src="cid:i${i}" width="70" height="90" style="border-radius:10px;object-fit:cover">`}}
     return`<tr><td style="padding:10px;border-bottom:1px solid #f5d6e4">${img}</td><td style="padding:10px;border-bottom:1px solid #f5d6e4"><b style="color:#000000">${esc(l.name)}</b></td><td style="padding:10px;text-align:center;border-bottom:1px solid #f5d6e4;color:#000000">${l.qty}</td><td style="padding:10px;text-align:center;border-bottom:1px solid #f5d6e4;color:#000000">${l.price}₪</td><td style="padding:10px;text-align:center;border-bottom:1px solid #f5d6e4;color:#bb5182"><b>${l.price*l.qty}₪</b></td></tr>`}).join('');
   const html=`<div dir="rtl" bgcolor="#fff6f9" style="font-family:Tahoma,Arial,sans-serif;background:#fff6f9;color:#000000;padding:24px"><meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light only"><div style="max-width:640px;margin:auto;background-color:#ffffff;color:#000000;border-radius:18px;overflow:hidden;box-shadow:0 8px 30px #d46d9d33">
 <div bgcolor="#7a2f55" style="background-color:#7a2f55;background-image:linear-gradient(135deg,#2a1420,#993f69);color:#ffffff;padding:28px;text-align:center"><div style="font-size:26px;letter-spacing:2px;color:#e8c98f">SHE MODA</div><div style="margin-top:6px">طلب جديد رقم #${o.no}</div></div>
-<div style="padding:22px"><table width="100%" bgcolor="#fff6f9" style="background-color:#fff6f9;color:#000000;border-radius:12px;padding:12px;font-size:16px;line-height:1.9"><tr><td>👤 <b>الاسم:</b> ${esc(o.name)}</td></tr><tr><td>📞 <b>الهاتف:</b> ${esc(o.phone)}</td></tr><tr><td>🏙️ <b>المدينة:</b> ${esc(o.city)}</td></tr><tr><td>📍 <b>وصف المكان:</b> ${esc(o.address)}</td></tr>${o.note?`<tr><td>📝 <b>ملاحظة:</b> ${esc(o.note)}</td></tr>`:''}<tr><td>💵 <b>طريقة الدفع:</b> عند الاستلام</td></tr><tr><td>⭐ <b>تقييم الزبونة:</b> <span style="color:#e0a800;font-size:18px">${'★'.repeat(o.rating)}${'☆'.repeat(5-o.rating)}</span> (${o.rating}/5)</td></tr></table>
+<div style="padding:22px"><table width="100%" bgcolor="#fff6f9" style="background-color:#fff6f9;color:#000000;border-radius:12px;padding:12px;font-size:16px;line-height:1.9"><tr><td>👤 <b>الاسم:</b> ${esc(o.name)}</td></tr><tr><td>📞 <b>الهاتف:</b> ${esc(o.phone)}</td></tr><tr><td>🏙️ <b>المدينة:</b> ${esc(o.city)}</td></tr><tr><td>📍 <b>وصف المكان:</b> ${esc(o.address)}</td></tr>${o.note?`<tr><td>📝 <b>ملاحظة:</b> ${esc(o.note)}</td></tr>`:''}<tr><td>💵 <b>طريقة الدفع:</b> عند الاستلام</td></tr><tr><td>⭐ <b>تقييم الزبونة:</b> <span style="color:#e0a800;font-size:18px">${'★'.repeat(o.rating||0)}${'☆'.repeat(5-(o.rating||0))}</span> (${o.rating||0}/5)</td></tr></table>
 <table width="100%" style="margin-top:18px;border-collapse:collapse;font-size:14px;color:#000000"><tr bgcolor="#bb5182" style="background-color:#bb5182;color:#ffffff"><th style="padding:10px"></th><th style="padding:10px;text-align:right">القطعة</th><th>الكمية</th><th>السعر</th><th>المجموع</th></tr>${rows}</table>
 <div bgcolor="#993f69" style="margin-top:18px;background-color:#993f69;background-image:linear-gradient(135deg,#d46d9d,#993f69);color:#ffffff;border-radius:12px;padding:16px;text-align:center;font-size:20px">المبلغ النهائي: <b>${o.total}₪</b></div>
 <p style="color:#333333;font-size:13px;text-align:center;margin-top:16px">شكرًا لاختياركِ She Moda 💖 — عتيل، طولكرم</p></div></div></div>`;
   fs.writeFileSync(`${OUT}/order-${o.no}.html`,html.replace(/cid:i(\d)/g,(m,n)=>'../'+(at[n]?.path||'')));
-  if(!process.env.SMTP_HOST||!TO.length)return console.log('SMTP غير مُعدّ — حُفظ الإيميل في',OUT);
+  const subject=`طلب جديد #${o.no} — ${o.name} — ${o.total}₪`;
+  if(!TO.length){console.log('لا يوجد إيميل مستلم — حُفظ الإيميل في',OUT);return 'file'}
+  if(process.env.BREVO_API_KEY){
+    const r=await fetch(process.env.BREVO_URL||'https://api.brevo.com/v3/smtp/email',{method:'POST',headers:{'api-key':process.env.BREVO_API_KEY,'content-type':'application/json',accept:'application/json'},body:JSON.stringify({sender:{name:'She Moda',email:process.env.MAIL_FROM||TO[0]},to:TO.map(email=>({email})),subject,htmlContent:html})});
+    if(!r.ok)throw Error('Brevo '+r.status+' '+(await r.text()).slice(0,300));return 'brevo'}
+  if(process.env.RESEND_API_KEY){
+    const r=await fetch(process.env.RESEND_URL||'https://api.resend.com/emails',{method:'POST',headers:{Authorization:'Bearer '+process.env.RESEND_API_KEY,'content-type':'application/json'},body:JSON.stringify({from:process.env.MAIL_FROM||'She Moda <onboarding@resend.dev>',to:TO,subject,html})});
+    if(!r.ok)throw Error('Resend '+r.status+' '+(await r.text()).slice(0,300));return 'resend'}
+  if(!process.env.SMTP_HOST){console.log('لم يُضبط مزوّد إيميل — حُفظ الإيميل في',OUT);return 'file'}
   const t=nodemailer.createTransport({host:process.env.SMTP_HOST,port:+(process.env.SMTP_PORT||465),secure:(process.env.SMTP_PORT||465)==465,auth:{user:process.env.SMTP_USER,pass:process.env.SMTP_PASS}});
-  const to=TO.join(',');
-  await t.sendMail({from:`"She Moda" <${process.env.SMTP_USER}>`,to,subject:`طلب جديد #${o.no} — ${o.name} — ${o.total}₪`,html,attachments:at});
-}
+  await t.sendMail({from:`"She Moda" <${process.env.SMTP_USER}>`,to:TO.join(','),subject,html,attachments:at});return 'smtp'}
+const baseOf=q=>process.env.SITE_URL||`${q.headers['x-forwarded-proto']||q.protocol}://${q.get('host')}`;
+app.get('/api/mailtest',auth,async(q,s)=>{try{const p=db.products.find(x=>x.price)||db.products[0];const o={no:'TEST',name:'تجربة إيميل',phone:'0000000000',city:'عتيل',address:'هذه رسالة تجريبية من لوحة التحكم',note:'',rating:5,total:p.price||0};const via=await mail(o,[{name:p.name,image:p.image,price:p.price||0,qty:1}],baseOf(q));s.json({ok:true,via,to:TO})}catch(e){console.error('Mail test error',e.message);s.status(500).json({error:e.message})}});
 app.post('/api/order',limit('o',6,10*60e3),async(q,s)=>{const b=q.body;
   const rt=Math.round(+b.rating);if(!(rt>=1&&rt<=5))return s.status(400).json({error:'التقييم بالنجوم إجباري'});
   if(!b.name||!b.phone||!b.city||!b.address||!Array.isArray(b.items)||!b.items.length)return s.status(400).json({error:'عبّي كل الحقول المطلوبة'});
@@ -62,6 +74,6 @@ app.post('/api/order',limit('o',6,10*60e3),async(q,s)=>{const b=q.body;
   if(!lines.length)return s.status(400).json({error:'السلة فارغة'});
   const o={no:db.orders.length+1001,date:new Date().toISOString(),name:b.name,phone:b.phone,city:b.city,address:b.address,note:b.note||'',rating:rt,items:lines,total:lines.reduce((a,l)=>a+l.price*l.qty,0),mailed:false};
   db.orders.push(o);save();
-  try{await mail(o,lines);o.mailed=true;save()}catch(e){console.error('Mail error',e.message)}
+  try{const via=await mail(o,lines,baseOf(q));o.mailed=via!=='file';save()}catch(e){console.error('Mail error',e.message)}
   s.json({ok:1,no:o.no,total:o.total})});
 app.listen(process.env.PORT||3000,()=>console.log('She Moda → http://localhost:'+(process.env.PORT||3000)));
